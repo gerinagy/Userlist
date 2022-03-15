@@ -14,24 +14,32 @@ struct ContentView: View {
     @State var users = [String]()
     
     var body: some View {
+        
         VStack {
+            
             VStack{
+                
                 Text("User List")
                     .font(.system(size: 30))
                     .bold()
-                VStack{
+                
+                VStack {
+                    
                     TextField("First Name", text: $firstName )
                         .padding(12)
                         .background(Color(.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
                     TextField("Last Name", text: $lastName )
                         .padding(12)
                         .background(Color(.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
                 }
                 .padding()
                 
-                HStack{
+                HStack {
+                    
                     Button(action: {
                         self.users.append("\(self.firstName) \(self.lastName)")
                         self.firstName = ""
@@ -45,20 +53,25 @@ struct ContentView: View {
                     .background((firstName.count + lastName.count > 0) ? Color.blue : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     
-                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
                 
-                List{
+                List {
+                    
                     ForEach(users, id: \.self) { user in
                         Text(user)
                     }.onDelete { (indexSet) in
                         self.users.remove(atOffsets: indexSet)
                     }
+                    
                 }
+                
             }
             .background(Color(.systemMint))
+            
         }
+        
     }
 }
 
